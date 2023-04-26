@@ -1,0 +1,19 @@
+{
+  "name": "v2-shared-proto",
+  "version": "1.0.0",
+  "description": "This is movam shared proto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Movam/v2-shared-proto.git"
+  },
+  "author": "movam",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Movam/v2-shared-proto/issues"
+  },
+  "homepage": "https://github.com/Movam/v2-shared-proto#readme"
+}
