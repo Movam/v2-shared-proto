@@ -29,7 +29,7 @@ message RegisterRequest {
   string phone_code = 4;
   string phone_number = 5;
   bool terms_condition = 6;
-  UserType type = 7;
+  string type = 7;
 }
 
 message RegisterResponse {
