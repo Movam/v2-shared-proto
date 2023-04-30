@@ -3,7 +3,7 @@ syntax = "proto3";
 package auth;
 
 service AuthService {
-  rpc Register (RegisterRequest) returns (Response) {}
+  rpc Register (RegisterRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
 }
@@ -30,6 +30,10 @@ message RegisterRequest {
   string phone_number = 5;
   bool terms_condition = 6;
   UserType type = 7;
+}
+
+message RegisterResponse {
+  repeated Response response = 1;
 }
 
 // Login
