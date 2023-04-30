@@ -1,7 +1,7 @@
 {
   "name": "movam-proto",
   "version": "1.0.0",
-  "description": "This is movam shared proto",
+  "description": "This is movam v2 shared proto",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
