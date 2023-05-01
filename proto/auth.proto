@@ -35,7 +35,51 @@ message RegisterRequest {
 message RegisterResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  RegisterRequest data = 3;
+  string email = 3;
+}
+
+//OTP
+
+message ValidateOTPRequest {
+  string email = 1;
+  string code = 2;
+}
+
+message ValidateOTPResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  bool verified = 3;
+  optional string token = 4;
+}
+
+message ResendOTPRequest {
+  string email = 1;
+}
+
+message ResendOTPResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  bool sent = 3;
+}
+
+// Organization
+
+message ShipperOrganizationRequest {
+
+}
+
+message ShipperOrganizationReponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+}
+
+message LogisticOrganizationRequest {
+
+}
+
+message LogisticOrganizationReponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
 }
 
 // Login
