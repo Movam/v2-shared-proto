@@ -26,15 +26,16 @@ message RegisterRequest {
   string email = 1;
   string password = 2;
   string name = 3;
-  string phone_code = 4;
-  string phone_number = 5;
-  bool terms_condition = 6;
-  string type = 7;
+  string phoneCode = 4;
+  string phoneNumber = 5;
+  bool termsCondition = 6;
+  UserType type = 7;
 }
 
 message RegisterResponse {
-  int32 status = 1;
+  int32 statusCode = 1;
   repeated string error = 2;
+  RegisterRequest data = 3;
 }
 
 // Login
@@ -45,7 +46,7 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  int32 status = 1;
+  int32 statusCode = 1;
   repeated string error = 2;
   string token = 3;
 }
@@ -57,7 +58,7 @@ message ValidateRequest {
 }
 
 message ValidateResponse {
-  int32 status = 1;
+  int32 statusCode = 1;
   repeated string error = 2;
   int32 userId = 3;
 }
