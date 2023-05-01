@@ -42,7 +42,7 @@ message RegisterResponse {
 
 message ValidateOTPRequest {
   string email = 1;
-  string code = 2;
+  int32 code = 2;
 }
 
 message ValidateOTPResponse {
