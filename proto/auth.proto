@@ -6,6 +6,10 @@ service AuthService {
   rpc Register (RegisterRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc ValidateOTP (ValidateOTPRequest) returns (ValidateOTPResponse) {}
+  rpc ResendOTP (ResendOTPRequest) returns (ResendOTPResponse) {}
+  rpc ShipperOrganization (ShipperOrganizationRequest) returns (ShipperOrganizationResponse) {}
+  rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
 }
 
 enum UserType {
@@ -65,19 +69,34 @@ message ResendOTPResponse {
 // Organization
 
 message ShipperOrganizationRequest {
+  string companyName = 1;
+  string country = 2;
+  string state = 3;
+  string city = 4;
+  string companyAddress = 5;
+  string companyWebsite = 6;
 
 }
 
-message ShipperOrganizationReponse {
+message ShipperOrganizationResponse {
   int32 statusCode = 1;
   repeated string error = 2;
 }
 
 message LogisticOrganizationRequest {
+  string companyName = 1;
+  string country = 2;
+  string state = 3;
+  string city = 4;
+  string companyAddress = 5;
+  string companyWebsite = 6;
+  int32 noOfDrivers = 7;
+  int32 noOfVehicles = 8;
+  bool acceptsShipment = 9;
 
 }
 
-message LogisticOrganizationReponse {
+message LogisticOrganizationResponse {
   int32 statusCode = 1;
   repeated string error = 2;
 }
