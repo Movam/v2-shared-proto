@@ -53,7 +53,7 @@ message ValidateOTPResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool verified = 3;
-  int32 userId = 4;
+  string userId = 4;
   optional string token = 5;
 }
 
@@ -124,5 +124,5 @@ message ValidateRequest {
 message ValidateResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  int32 userId = 3;
+  optional string userId = 3;
 }
