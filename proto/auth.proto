@@ -75,7 +75,7 @@ message ShipperOrganizationRequest {
   string city = 4;
   string companyAddress = 5;
   string companyWebsite = 6;
-
+  string userId = 7;
 }
 
 message ShipperOrganizationResponse {
@@ -93,7 +93,7 @@ message LogisticOrganizationRequest {
   int32 noOfDrivers = 7;
   int32 noOfVehicles = 8;
   bool acceptsShipment = 9;
-
+  string userId = 10;
 }
 
 message LogisticOrganizationResponse {
