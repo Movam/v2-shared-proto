@@ -146,7 +146,7 @@ message ForgotPasswordResponse {
 
 // ResetPassword
 message ResetPasswordRequest {
-  string confirmPassword = 1;
+  string token = 1;
   string newPassword = 2;
   string confirmPassword = 3;
 }
