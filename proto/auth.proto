@@ -10,6 +10,9 @@ service AuthService {
   rpc ResendOTP (ResendOTPRequest) returns (ResendOTPResponse) {}
   rpc ShipperOrganization (ShipperOrganizationRequest) returns (ShipperOrganizationResponse) {}
   rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
+  rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
+  rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
+  rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordResponse) {}
 }
 
 enum UserType {
@@ -113,6 +116,35 @@ message LoginResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   string token = 3;
+}
+
+
+// ChangePassword
+message ChangePasswordRequest {
+
+}
+
+message ChangePasswordResponse {
+
+}
+
+
+// ForgotPassword
+message ForgotPasswordRequest {
+
+}
+
+message ForgotPasswordResponse {
+
+}
+
+// ResetPassword
+message ResetPasswordRequest {
+
+}
+
+message ResetPasswordResponse {
+  
 }
 
 // Validate
