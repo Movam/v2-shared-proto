@@ -121,30 +121,40 @@ message LoginResponse {
 
 // ChangePassword
 message ChangePasswordRequest {
-
+  string currentPassword = 1;
+  string newPassword = 2;
+  string confirmPassword = 3;
 }
 
 message ChangePasswordResponse {
-
+  int32 statusCode = 1;
+  repeated string error = 2;
+  optional string userId = 3;
 }
 
 
 // ForgotPassword
 message ForgotPasswordRequest {
-
+  string email = 1;
 }
 
 message ForgotPasswordResponse {
-
+  int32 statusCode = 1;
+  repeated string error = 2;
+  optional string userId = 3;
 }
 
 // ResetPassword
 message ResetPasswordRequest {
-
+  string confirmPassword = 1;
+  string newPassword = 2;
+  string confirmPassword = 3;
 }
 
 message ResetPasswordResponse {
-  
+  int32 statusCode = 1;
+  repeated string error = 2;
+  optional string userId = 3;
 }
 
 // Validate
