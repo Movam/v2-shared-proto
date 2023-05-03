@@ -129,7 +129,6 @@ message ChangePasswordRequest {
 message ChangePasswordResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  optional string userId = 3;
 }
 
 
@@ -141,7 +140,6 @@ message ForgotPasswordRequest {
 message ForgotPasswordResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  optional string userId = 3;
 }
 
 // ResetPassword
@@ -154,7 +152,6 @@ message ResetPasswordRequest {
 message ResetPasswordResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  optional string userId = 3;
 }
 
 // Validate
