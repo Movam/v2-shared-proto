@@ -12,6 +12,38 @@ service AuthService {
   rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
   rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
+  rpc GetUsers (GetUsersRequest) returns (GetUsersResponse) {}
+  rpc AddUser (AddUserRequest) returns (AddUserResponse) {}
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc GetRoles (GetRolesRequest) returns (GetRolesResponse) {}
+  rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
+  rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse) {}
+}
+
+// User
+message GetUser{
+  int32 id = 1;
+  string name = 2;
+  string role = 3;
+  string email = 4;
+  string dateAdded = 5;
+  string status = 6;
+  string phoneCode = 7;
+  string phoneNumber = 8;
+}
+
+// Role
+message GetRole{
+  int32 id = 1;
+  string title = 2;
+  string reportingTo = 3;
+  int32 totalUsers = 4;
+  string createdBy = 5;
+  string dateCreated = 6;
+  string status = 7;
+  repeated string permissions = 8;
+  repeated int32 userIds = 9;
+
 }
 
 // Register User
@@ -53,7 +85,7 @@ message ResendOTPResponse {
   bool sent = 3;
 }
 
-// Register Shipper Orgaziation
+// Register Shipper Organization
 message ShipperOrganizationRequest {
   string companyName = 1;
   string country = 2;
@@ -68,7 +100,7 @@ message ShipperOrganizationResponse {
   repeated string error = 2;
 }
 
-// Register Logistics Orgaziation
+// Register Logistics Organization
 message LogisticOrganizationRequest {
   string companyName = 1;
   string country = 2;
@@ -128,4 +160,77 @@ message ValidateResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   optional string userId = 3;
+}
+
+// Get Users
+message GetUsersRequest {
+  string userId = 1;
+}
+message GetUsersResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  repeated GetUser data = 3;
+}
+
+// Add User
+message AddUserRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+  string confirmPassword = 4;
+  string phoneCode = 5;
+  string phoneNumber = 6;
+  string role = 7;
+}
+message AddUserResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  int32 createdUserId = 3;
+}
+
+// Update User
+message UpdateUserRequest {
+  optional string name = 1;
+  string phoneCode = 2;
+  string phoneNumber = 3;
+  string role = 4;
+}
+message UpdateUserResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  int32 updatedUserId = 3;
+}
+
+// Get Roles
+message GetRolesRequest {
+  string userId = 1;
+}
+message GetRolesResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  repeated GetRole data = 3;
+}
+
+// Add Role
+message AddRoleUserRequest {
+  string title = 1;
+  string reportingTo = 2;
+  repeated string permissions = 3;
+}
+message AddRoleResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  int32 createdRoleId = 3;
+}
+
+// Update Role
+message UpdateRoleRequest {
+  optional string title = 1;
+  optional string reportingTo = 2;
+  repeated string permissions = 3;
+}
+message UpdateRoleResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  int32 updatedRoleId = 3;
 }
