@@ -112,6 +112,7 @@ message ForgotPasswordResponse {
 message ChangePasswordRequest {
   string newPassword = 1;
   string confirmPassword = 2;
+  string token = 3;
 }
 message ChangePasswordResponse {
   int32 statusCode = 1;
