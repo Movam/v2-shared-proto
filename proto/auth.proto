@@ -212,7 +212,7 @@ message GetRolesResponse {
 }
 
 // Add Role
-message AddRoleUserRequest {
+message AddRoleRequest {
   string title = 1;
   string reportingTo = 2;
   repeated string permissions = 3;
