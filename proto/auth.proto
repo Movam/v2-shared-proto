@@ -46,6 +46,7 @@ message ValidateOTPResponse {
 // Resend OTP
 message ResendOTPRequest {
   string email = 1;
+  string type = 2;
 }
 message ResendOTPResponse {
   int32 statusCode = 1;
