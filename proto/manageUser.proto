@@ -19,7 +19,7 @@ message User{
   string name = 2;
   string role = 3;
   string email = 4;
-  string dateAdded = 5;
+  string created_at = 5;
   string status = 6;
   string phoneCode = 7;
   string phoneNumber = 8;
@@ -36,7 +36,7 @@ message GetUserRequest {
 message GetUserResponse {
   int32 id = 1;
   string name = 2;
-  string role = 3;
+  string role_id = 3;
   string email = 4;
   string dateAdded = 5;
   string status = 6;
@@ -89,12 +89,11 @@ message Role{
   int32 id = 1;
   string title = 2;
   string reportingTo = 3;
-  int32 totalUsers = 4;
-  string createdBy = 5;
-  string dateCreated = 6;
-  string status = 7;
-  repeated string permissions = 8;
-  repeated int32 userIds = 9;
+  string createdBy = 4;
+  string created_at = 5;
+  string status = 6;
+  repeated string permissions = 7;
+  repeated int32 userIds = 8;
 
 }
 
