@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package auth;
+import "manageUser.proto";
 
 service AuthService {
   rpc Register (RegisterRequest) returns (RegisterResponse) {}
@@ -12,6 +13,15 @@ service AuthService {
   rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
   rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
+  rpc GetUsers (GetUsersRequest) returns (GetUsersResponse) {}
+  rpc AddUser (AddUserRequest) returns (AddUserResponse) {}
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc GetRole (GetRolesRequest) returns (GetRolesResponse) {}
+  rpc GetRoles (GetRolesRequest) returns (GetRolesResponse) {}
+  rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
+  rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse) {}
+
  }
 
 // Register User
