@@ -8,7 +8,7 @@ message User{
   string name = 2;
   int32 roleId = 3;
   string email = 4;
-  int64 createdAt = 5;
+  string createdAt = 5;
   string status = 6;
   string phoneCode = 7;
   string phoneNumber = 8;
@@ -27,7 +27,7 @@ message GetUserResponse {
   string name = 2;
   int32 roleId = 3;
   string email = 4;
-  int64 dateAdded = 5;
+  string dateAdded = 5;
   string status = 6;
   string phoneCode = 7;
   string phoneNumber = 8;
@@ -78,8 +78,8 @@ message Role{
   int32 id = 1;
   string title = 2;
   string reportingTo = 3;
-  int64 createdBy = 4;
-  int64 createdAt = 5;
+  string createdBy = 4;
+  string createdAt = 5;
   string status = 6;
   repeated string permissions = 7;
   repeated int32 userIds = 8;
@@ -100,7 +100,7 @@ message GetRolesResponse {
 message AddRoleRequest {
   string title = 1;
   string reportingTo = 2;
-  int64 createdBy = 3;
+  string createdBy = 3;
   repeated string permissions = 4;
   string status = 5;
 }
