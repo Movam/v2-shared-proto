@@ -6,7 +6,7 @@ package auth;
 message User{
   int32 id = 1;
   string name = 2;
-  int32 roleId = 3;
+  string roleId = 3;
   string email = 4;
   string createdAt = 5;
   string status = 6;
@@ -25,7 +25,7 @@ message GetUserRequest {
 message GetUserResponse {
   int32 id = 1;
   string name = 2;
-  int32 roleId = 3;
+  string roleId = 3;
   string email = 4;
   string dateAdded = 5;
   string status = 6;
@@ -65,12 +65,12 @@ message UpdateUserRequest {
   optional string name = 1;
   string phoneCode = 2;
   string phoneNumber = 3;
-  int32 roleId = 4;
+  string role = 4;
 }
 message UpdateUserResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  int32 updatedUserId = 3;
+  string updatedUserId = 3;
 }
 
 // Role
@@ -82,7 +82,7 @@ message Role{
   string createdAt = 5;
   string status = 6;
   repeated string permissions = 7;
-  repeated int32 userIds = 8;
+  repeated string userIds = 8;
 
 }
 
@@ -108,7 +108,7 @@ message AddRoleRequest {
 message AddRoleResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  int32 createdRoleId = 3;
+  string createdRoleId = 3;
 }
 
 // Update Role
@@ -121,5 +121,5 @@ message UpdateRoleRequest {
 message UpdateRoleResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  int32 updatedRoleId = 3;
+  string updatedRoleId = 3;
 }
