@@ -20,7 +20,6 @@ service AuthService {
   rpc GetRoles (GetRolesRequest) returns (GetRolesResponse) {}
   rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
   rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse) {}
-
  }
 
 // Register User
@@ -137,7 +136,9 @@ message ValidateRequest {
 message ValidateResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  optional string userId = 3;
+  string id = 3;
+  string email = 4;
+  string orgId = 5;
 }
 
 // Get User
