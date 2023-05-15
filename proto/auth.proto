@@ -210,17 +210,19 @@ message UpdateUserResponse {
   string updatedUserId = 3;
 }
 
+// Permissions
+message Permission{
+  
+}
 // Role
 message Role{
   int32 id = 1;
   string title = 2;
   int64 orgId = 3;
   string status = 4;
-  repeated string permissions = 5;
-  repeated string meta = 6;
+  string permissions = 5;
+  string meta = 6;
 }
-
-// Get Roles
 message GetRolesRequest {
   int64 orgId = 1;
 }
@@ -229,8 +231,6 @@ message GetRolesResponse {
   repeated string error = 2;
   repeated Role data = 3;
 }
-
-// Add Role
 message AddRoleRequest {
   string title = 1;
   string reportingTo = 2;
@@ -238,14 +238,11 @@ message AddRoleRequest {
   repeated string permissions = 4;
   string status = 5;
 }
-
 message AddRoleResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   string createdRoleId = 3;
 }
-
-// Update Role
 message UpdateRoleRequest {
   optional string title = 1;
   optional string reportingTo = 2;
