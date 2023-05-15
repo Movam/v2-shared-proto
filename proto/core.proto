@@ -48,7 +48,7 @@ message ValidateOTPResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool verified = 3;
-  string token = 4;
+  optional string token = 4;
   optional string userId = 5;
 }
 
