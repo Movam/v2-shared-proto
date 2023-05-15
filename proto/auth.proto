@@ -138,7 +138,7 @@ message ValidateResponse {
   repeated string error = 2;
   string id = 3;
   string email = 4;
-  int64 orgId = 5;
+  int32 orgId = 5;
 }
 
 // Get User
