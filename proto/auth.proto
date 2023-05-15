@@ -216,7 +216,7 @@ message Permission{
 }
 // Role
 message Role{
-  int32 id = 1;
+  string id = 1;
   string title = 2;
   int64 orgId = 3;
   string status = 4;
