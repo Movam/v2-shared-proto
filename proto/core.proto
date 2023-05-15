@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package auth;
+package core;
 
-service AuthService {
+service CoreService {
   rpc Register (RegisterRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
