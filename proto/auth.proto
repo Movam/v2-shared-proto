@@ -218,13 +218,13 @@ message Permission{
 message Role{
   string id = 1;
   string title = 2;
-  int64 orgId = 3;
+  int32 orgId = 3;
   string status = 4;
   string permissions = 5;
   string meta = 6;
 }
 message GetRolesRequest {
-  int64 orgId = 1;
+  int32 orgId = 1;
 }
 message GetRolesResponse {
   int32 statusCode = 1;
@@ -234,7 +234,7 @@ message GetRolesResponse {
 message AddRoleRequest {
   string title = 1;
   optional string reportingTo = 2;
-  int64 orgId = 3;
+  int32 orgId = 3;
   repeated string permissions = 4;
 }
 message AddRoleResponse {
