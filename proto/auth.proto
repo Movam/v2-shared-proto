@@ -233,15 +233,14 @@ message GetRolesResponse {
 }
 message AddRoleRequest {
   string title = 1;
-  string reportingTo = 2;
-  string createdBy = 3;
+  optional string reportingTo = 2;
+  int64 orgId = 3;
   repeated string permissions = 4;
-  string status = 5;
 }
 message AddRoleResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  string createdRoleId = 3;
+  string id = 3;
 }
 message UpdateRoleRequest {
   optional string title = 1;
