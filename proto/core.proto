@@ -198,7 +198,8 @@ message Role{
   int32 orgId = 3;
   string status = 4;
   string permissions = 5;
-  string meta = 6;
+  string createdBy = 6;
+  optional string reportingTo = 7;
 }
 message GetRolesRequest {
   int32 orgId = 1;
