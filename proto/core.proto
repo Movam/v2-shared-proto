@@ -244,5 +244,5 @@ message UpdateRoleRequest {
 message UpdateRoleResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  string updatedRoleId = 3;
+  string id = 3;
 }
