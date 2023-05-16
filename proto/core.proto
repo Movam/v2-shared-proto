@@ -20,6 +20,7 @@ service CoreService {
   rpc GetRoles (GetRolesRequest) returns (GetRolesResponse) {}
   rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
   rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse) {}
+  rpc GetRoleUsers (GetRoleUsersRequest) returns (GetRoleUsersResponse) {}
  }
 
 // Register User
@@ -187,6 +188,14 @@ message AddUserResponse {
 //   repeated string error = 2;
 //   string updatedUserId = 3;
 // }
+message GetRoleUsersRequest {
+  int32 roleId = 1;
+}
+message GetRoleUsersResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  repeated User data = 3;
+}
 
 // Permissions
 message Permission{
