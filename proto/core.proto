@@ -193,14 +193,25 @@ message Permission{
   
 }
 // Role
+
+message RoleCreator{
+  string id = 1;
+  string name = 2;
+}
+
+message RoleManager{
+  string id = 1;
+  string name = 2;
+}
+
 message Role{
   string id = 1;
   string title = 2;
   int32 orgId = 3;
   string status = 4;
   string permissions = 5;
-  string createdBy = 6;
-  optional string reportingTo = 7;
+  RoleCreator createdBy = 6;
+  optional RoleManager reportingTo = 7;
 }
 message GetRolesRequest {
   int32 orgId = 1;
