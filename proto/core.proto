@@ -213,6 +213,7 @@ message AddRoleRequest {
   optional string reportingTo = 2;
   int32 orgId = 3;
   repeated string permissions = 4;
+  string userId = 5;
 }
 message AddRoleResponse {
   int32 statusCode = 1;
