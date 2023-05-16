@@ -244,10 +244,12 @@ message AddRoleResponse {
   string id = 3;
 }
 message UpdateRoleRequest {
-  optional string title = 1;
-  optional string reportingTo = 2;
-  repeated string permissions = 3;
-  optional string status = 4;
+  string id = 1;
+  string title = 2;
+  string reportingTo = 3;
+  repeated string permissions = 4;
+  string status = 5;
+  int32 orgId = 6;
 }
 message UpdateRoleResponse {
   int32 statusCode = 1;
