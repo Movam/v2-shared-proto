@@ -12,11 +12,11 @@ service CoreService {
   rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
   rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
-  rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
+  // rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
   rpc GetUsers (GetUsersRequest) returns (GetUsersResponse) {}
   rpc AddUser (AddUserRequest) returns (AddUserResponse) {}
-  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
-  rpc GetRole (GetRolesRequest) returns (GetRolesResponse) {}
+  // rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+  // rpc GetRole (GetRolesRequest) returns (GetRolesResponse) {}
   rpc GetRoles (GetRolesRequest) returns (GetRolesResponse) {}
   rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
   rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse) {}
@@ -142,74 +142,50 @@ message ValidateResponse {
   int32 orgId = 5;
 }
 
-// Get User
-message GetUserRequest {
-  string userId = 1;
-  string uuid = 2;
-}
-
 // User
 message User{
-  int32 id = 1;
+  string id = 1;
   string name = 2;
-  string roleId = 3;
-  string email = 4;
-  string createdAt = 5;
+  string email = 3;
+  string phoneCode = 4;
+  string phoneNumber = 5;
   string status = 6;
-  string phoneCode = 7;
-  string phoneNumber = 8;
+  string createdAt = 7;
+  Role role = 8;
+  string meta = 9;
 }
-
-// Get User Response
-message GetUserResponse {
-  int32 id = 1;
-  string name = 2;
-  string roleId = 3;
-  string email = 4;
-  string dateAdded = 5;
-  string status = 6;
-  string phoneCode = 7;
-  string phoneNumber = 8;
-}
-
-// Get Users
 message GetUsersRequest {
-  string userId = 1;
+  int32 orgId = 1;
 }
 message GetUsersResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   repeated User data = 3;
 }
-
-// Add User
 message AddUserRequest {
   string name = 1;
   string email = 2;
   string password = 3;
-  string confirmPassword = 4;
-  string phoneCode = 5;
-  string phoneNumber = 6;
-  string role = 7;
+  string phoneCode = 4;
+  string phoneNumber = 5;
+  string roleId = 6;
 }
 message AddUserResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  int32 createdUserId = 3;
+  int32 id = 3;
 }
-
-// Update User
-message UpdateUserRequest {
-  optional string name = 1;
-  string phoneCode = 2;
-  string phoneNumber = 3;
-  string role = 4;
-}
-message UpdateUserResponse {
-  int32 statusCode = 1;
-  repeated string error = 2;
-  string updatedUserId = 3;
-}
+// message UpdateUserRequest {
+//   optional string name = 1;
+//   string phoneCode = 2;
+//   string phoneNumber = 3;
+//   string role = 4;
+// }
+// message UpdateUserResponse {
+//   int32 statusCode = 1;
+//   repeated string error = 2;
+//   string updatedUserId = 3;
+// }
 
 // Permissions
 message Permission{
