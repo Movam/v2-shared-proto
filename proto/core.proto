@@ -169,11 +169,12 @@ message AddUserRequest {
   string phoneCode = 4;
   string phoneNumber = 5;
   string roleId = 6;
+  int32 orgId = 7;
 }
 message AddUserResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  int32 id = 3;
+  string id = 3;
 }
 // message UpdateUserRequest {
 //   optional string name = 1;
