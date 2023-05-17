@@ -172,7 +172,7 @@ message AddUserRequest {
   string phoneNumber = 5;
   string roleId = 6;
   int32 orgId = 7;
-  string type = 8;
+  string userType = 8;
 }
 message AddUserResponse {
   int32 statusCode = 1;
