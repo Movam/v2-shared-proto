@@ -173,6 +173,7 @@ message AddUserRequest {
   string roleId = 6;
   int32 orgId = 7;
   string userType = 8;
+  string userId = 9;
 }
 message AddUserResponse {
   int32 statusCode = 1;
