@@ -296,7 +296,7 @@ message OrganizationLocation{
 }
 
 message GetAccountDetailsRequest {
-  string email= 1;
+  string userId= 1;
 }
 
 message AccountDetailResponse {
