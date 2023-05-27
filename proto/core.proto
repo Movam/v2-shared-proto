@@ -284,9 +284,8 @@ message Organization{
   string name = 2;
   string uuid = 3;
   OrganizationLocation location = 4;
-  OrganizationMeta meta = 5;
-  string updatedAt = 6;
-  string createdAt = 7;
+  string updatedAt = 5;
+  string createdAt = 6;
 }
 
 message OrganizationLocation{
@@ -294,18 +293,6 @@ message OrganizationLocation{
   string city = 2;
   string country = 3;
   string state = 4;
-}
-
-message OrganizationMeta{
-  bool shipmentAcceptance = 1;
-  string website = 2;
-  OrganizationCount counts = 3;
-  string state = 4;
-}
-
-message OrganizationCount{
-  int32 drivers = 1;
-  int32 vehicles = 2;
 }
 
 message GetAccountDetailsRequest {
