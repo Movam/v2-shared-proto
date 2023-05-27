@@ -21,6 +21,8 @@ service CoreService {
   rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
   rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse) {}
   rpc GetRoleUsers (GetRoleUsersRequest) returns (GetRoleUsersResponse) {}
+  rpc GetAccountDetails(GetAccountDetailsRequest) returns (AccountDetailResponse) {}
+
  }
 
 // Register User
@@ -257,3 +259,14 @@ message UpdateRoleResponse {
   repeated string error = 2;
   string id = 3;
 }
+
+message GetAccountDetailsRequest {
+  string email= 1;
+}
+
+message AccountDetailResponse {
+  int32 statusCode = 1;
+  repeated string error= 2;
+  optional User user= 3;
+}
+
