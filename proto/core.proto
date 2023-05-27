@@ -304,8 +304,8 @@ message OrganizationMeta{
 }
 
 message OrganizationCount{
-  int64 drivers = 1;
-  int64 vehicles = 2;
+  int32 drivers = 1;
+  int32 vehicles = 2;
 }
 
 message GetAccountDetailsRequest {
