@@ -1,5 +1,4 @@
 syntax = "proto3";
-import "google/protobuf/any.proto";
 
 package core;
 
@@ -272,8 +271,41 @@ message Account{
   string status = 6;
   string createdAt = 7;
   Role role = 8;
-  google.protobuf.Any organization = 9;
-  google.protobuf.Any meta = 10;
+  Organization organization = 9;
+  UserMeta meta = 10;
+}
+
+message UserMeta{
+  string termsCondition = 1;
+}
+
+message Organization{
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+  OrganizationLocation location = 4;
+  OrganizationMeta meta = 5;
+  string updatedAt = 6;
+  string createdAt = 7;
+}
+
+message OrganizationLocation{
+  string address = 1;
+  string city = 2;
+  string country = 3;
+  string state = 4;
+}
+
+message OrganizationMeta{
+  bool shipmentAcceptance = 1;
+  string website = 2;
+  OrganizationCount counts = 3;
+  string state = 4;
+}
+
+message OrganizationCount{
+  int64 drivers = 1;
+  int64 vehicles = 2;
 }
 
 message GetAccountDetailsRequest {
