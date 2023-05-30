@@ -226,7 +226,8 @@ message Role{
   string status = 4;
   string permissions = 5;
   RoleCreator createdBy = 6;
-  optional RoleManager reportingTo = 7;
+  string createdAt = 7;
+  optional RoleManager reportingTo = 8;
 }
 message GetRolesRequest {
   int32 orgId = 1;
