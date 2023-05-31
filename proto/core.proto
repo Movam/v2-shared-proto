@@ -253,10 +253,10 @@ message User{
 message Organization{
   string id = 1;
   string name = 2;
-  Location location = 4;
-  string updatedAt = 5;
-  string createdAt = 6;
-  string meta = 7;
+  Location location = 3;
+  string updatedAt =4;
+  string createdAt = 5;
+  string meta = 6;
 }
 // Permissions
 message Permission{
