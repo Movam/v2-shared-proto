@@ -259,7 +259,7 @@ message Permission{
 message Role{
   string id = 1;
   string title = 2;
-  int32 orgId = 3;
+  optional int32 orgId = 3;
   string status = 4;
   repeated Permission permissions = 5;
   CreatedBy createdBy = 6;
