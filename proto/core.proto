@@ -199,7 +199,7 @@ message UpdateRoleRequest {
   string id = 1;
   string title = 2;
   optional string reportingTo = 3;
-  repeated Permission permissions = 4;
+  repeated string permissions = 4;
   string status = 5;
   int32 orgId = 6;
 }
