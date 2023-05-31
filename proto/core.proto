@@ -143,7 +143,7 @@ message ValidateRequest {
 message ValidateResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  User user = 3;
+  optional User user = 3;
 }
 
 message GetUsersRequest {
@@ -245,16 +245,16 @@ message User{
   string status = 6;
   string createdAt = 7;
   Role role = 8;
-  optional Organization organization =9;
+  optional Organization organization = 9;
   string meta = 10;
-  optional int32 orgId = 11;
+  // optional int32 orgId = 11;
 }
 // Organization
 message Organization{
   string id = 1;
   string name = 2;
   Location location = 3;
-  string updatedAt =4;
+  string updatedAt = 4;
   string createdAt = 5;
   string meta = 6;
 }
@@ -267,7 +267,7 @@ message Permission{
 message Role{
   string id = 1;
   string title = 2;
-  optional int32 orgId = 3;
+  optional int orgId = 3;
   string status = 4;
   repeated Permission permissions = 5;
   CreatedBy createdBy = 6;
