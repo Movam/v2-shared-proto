@@ -18,7 +18,7 @@ service CoreService {
   rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
   rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse) {}
   rpc GetRoleUsers (GetRoleUsersRequest) returns (GetRoleUsersResponse) {}
-  rpc GetOrganizationPermissions (GetOrganizationPermissionsRequest) returns (OrganizationPermissionsResponse) {}
+  rpc GetOrganizationPermissions (GetOrganizationPermissionsRequest) returns (GetOrganizationPermissionsResponse) {}
  }
 
 // Register User
