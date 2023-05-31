@@ -240,7 +240,7 @@ message User{
   Role role = 8;
   optional Organization organization =9;
   string meta = 10;
-  optional int orgId = 11;
+  optional int32 orgId = 11;
 }
 // Organization
 message Organization{
