@@ -270,7 +270,7 @@ message Role{
   optional int32 orgId = 3;
   string status = 4;
   repeated Permission permissions = 5;
-  CreatedBy createdBy = 6;
+  optional CreatedBy createdBy = 6;
   string createdAt = 7;
   optional CreatedBy reportingTo = 8;
 }
