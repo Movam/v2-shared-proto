@@ -18,6 +18,7 @@ service CoreService {
   rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
   rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse) {}
   rpc GetRoleUsers (GetRoleUsersRequest) returns (GetRoleUsersResponse) {}
+  rpc GetOrganizationPermissions (GetOrganizationPermissionsRequest) returns (OrganizationPermissionsResponse) {}
  }
 
 // Register User
@@ -208,6 +209,13 @@ message UpdateRoleResponse {
   string id = 3;
 }
 
+message GetOrganizationPermissionsRequest {
+  string userType = 1;
+}
+message GetOrganizationPermissionsResponse {
+  repeated Permission permission = 1;
+}
+
 // CreatedBy
 message CreatedBy{
   string id = 1;
@@ -230,7 +238,7 @@ message User{
   string status = 6;
   string createdAt = 7;
   Role role = 8;
-  Organization organization =9;
+  optional Organization organization =9;
   string meta = 10;
 }
 // Organization
