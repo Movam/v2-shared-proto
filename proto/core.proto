@@ -150,6 +150,10 @@ message ValidateResponse {
   string phoneNumber = 7;
   string status = 8;
   string createdAt = 9;
+  Role role = 10;
+  Organization organization = 11;
+  string meta = 12;
+  int32 orgId = 13;
 }
 
 message GetUsersRequest {
