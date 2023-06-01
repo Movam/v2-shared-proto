@@ -143,7 +143,13 @@ message ValidateRequest {
 message ValidateResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  User user = 3;
+  string id = 3;
+  string name = 4;
+  string email = 5;
+  string phoneCode = 6;
+  string phoneNumber = 7;
+  string status = 8;
+  string createdAt = 9;
 }
 
 message GetUsersRequest {
