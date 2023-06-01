@@ -23,10 +23,10 @@ service CoreService {
  }
 
 message GetAuthUserRequest {
-
+  string userId = 1;
 }
 message GetAuthUserResponse {
-
+  User data = 1;
 }
 // Register User
 message RegisterRequest {
