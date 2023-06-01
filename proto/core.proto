@@ -143,7 +143,7 @@ message ValidateRequest {
 message ValidateResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  optional User user = 3;
+  User user = 3;
 }
 
 message GetUsersRequest {
