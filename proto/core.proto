@@ -111,7 +111,7 @@ message LoginRequest {
 }
 message LoginResponse {
   int32 statusCode = 1;
-  optional string error = 2;
+  repeated string error = 2;
   optional string token = 3;
   optional string userId = 4;
 }
