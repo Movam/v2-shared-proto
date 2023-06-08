@@ -176,7 +176,7 @@ message AddUserResponse {
   string id = 3;
 }
 message GetRoleUsersRequest {
-  int32 roleId = 1;
+  string roleId = 1;
 }
 message GetRoleUsersResponse {
   int32 statusCode = 1;
