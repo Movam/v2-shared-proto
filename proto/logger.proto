@@ -14,7 +14,7 @@ service LoggerService {
     optional string userId= 6;
     string type= 7;
     string ip= 8;
-    string payload= 9;
+    optional string payload= 9;
     string response= 10;
   }
 
