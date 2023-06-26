@@ -261,6 +261,7 @@ message Organization{
   string updatedAt = 4;
   string createdAt = 5;
   string meta = 6;
+  optional int32 accountNo = 7;
 }
 // Permissions
 message Permission{
