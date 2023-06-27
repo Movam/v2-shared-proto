@@ -284,7 +284,7 @@ message Role{
 message GetLogisticOrganizationResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  repeated Organization data = 3;
+  Organization data = 3;
 }
 message GetLogisticOrganizationRequest {
   string accountNo = 1;
