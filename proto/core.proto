@@ -98,6 +98,7 @@ message LogisticOrganizationRequest {
   int32 noOfVehicles = 8;
   bool acceptsShipment = 9;
   string userId = 10;
+  optional string referralCode = 11;
 }
 message LogisticOrganizationResponse {
   int32 statusCode = 1;
