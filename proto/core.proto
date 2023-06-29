@@ -20,7 +20,7 @@ service CoreService {
   rpc GetRoleUsers (GetRoleUsersRequest) returns (GetRoleUsersResponse) {}
   rpc GetOrganizationPermissions (GetOrganizationPermissionsRequest) returns (GetOrganizationPermissionsResponse) {}
   rpc GetAuthUser (GetAuthUserRequest) returns (GetAuthUserResponse) {}
-  rpc GetLogisticByAccountNo (GetLogisticOrganizationRequest) returns (GetLogisticOrganizationResponse) {}
+  rpc getOrganisationByAccountNo (GetOrganisationByAccountNoRequest) returns (GetOrganisationByAccountNoResponse) {}
  }
 
 message GetAuthUserRequest {
@@ -281,11 +281,11 @@ message Role{
   optional CreatedBy reportingTo = 8;
 }
 
-message GetLogisticOrganizationResponse {
+message GetOrganisationByAccountNoResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   Organization data = 3;
 }
-message GetLogisticOrganizationRequest {
+message GetOrganisationByAccountNoRequest {
   string accountNo = 1;
 }
