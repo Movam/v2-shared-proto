@@ -19,6 +19,8 @@ service NotificationService {
     }
     message GetNotificationMessagesRequest {
       string email = 1;
+      int32 skip = 2;
+      int32 take = 3;
     }
     message GetNotificationMessagesResponse {
       repeated NotificationMessage notificationMessage = 1;
