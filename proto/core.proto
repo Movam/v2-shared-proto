@@ -13,6 +13,7 @@ service CoreService {
   rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc GetUsers (GetUsersRequest) returns (GetUsersResponse) {}
+  rpc GetUsersByOrgId (GetUsersByOrgIdRequest) returns (GetUsersResponse) {}
   rpc AddUser (AddUserRequest) returns (AddUserResponse) {}
   rpc GetRoles (GetRolesRequest) returns (GetRolesResponse) {}
   rpc AddRole (AddRoleRequest) returns (AddRoleResponse) {}
@@ -155,6 +156,11 @@ message GetUsersRequest {
   int32 orgId = 1;
   string userId = 2;
 }
+
+message GetUsersByOrgIdRequest {
+  int32 orgId = 1;
+}
+
 message GetUsersResponse {
   int32 statusCode = 1;
   repeated string error = 2;
