@@ -4,6 +4,7 @@ package core;
 
 service CoreService {
   rpc Register (RegisterRequest) returns (RegisterResponse) {}
+  rpc RegisterDriver (RegisterDriverRequest) returns (RegisterDriverResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateOTP (ValidateOTPRequest) returns (ValidateOTPResponse) {}
