@@ -10,7 +10,8 @@ service NotificationService {
  
    message RegisterDeviceRequest {
       string deviceToken = 1;
-      string email = 2;
+      string deviceType = 2;
+      string email = 3;
     }
    message RegisterDeviceResponse {
       int32 statusCode = 1;
@@ -19,11 +20,13 @@ service NotificationService {
     }
     message GetNotificationMessagesRequest {
       string email = 1;
-      int32 skip = 2;
-      int32 take = 3;
+      optional int32 skip = 2;
+      optional int32 take = 3;
     }
     message GetNotificationMessagesResponse {
-      repeated NotificationMessage notificationMessage = 1;
+      int32 statusCode = 1;
+      repeated string error = 2;
+      repeated NotificationMessage notificationMessage = 3;
     }
     message NotificationMessage{
       int32  uuid   =1;              
@@ -35,7 +38,7 @@ service NotificationService {
     }
     message ReadNotificationRequest {
       string email = 1;
-      int32 messageUUID = 2;
+      int32 messageId = 2;
     }
    message ReadNotificationResponse {
       int32 statusCode = 1;
