@@ -16,7 +16,7 @@ service NotificationService {
    message RegisterDeviceResponse {
       int32 statusCode = 1;
       repeated string error = 2;
-      string uuid = 3;
+      string id = 3;
     }
     message GetNotificationMessagesRequest {
       string email = 1;
@@ -26,10 +26,10 @@ service NotificationService {
     message GetNotificationMessagesResponse {
       int32 statusCode = 1;
       repeated string error = 2;
-      repeated NotificationMessage notificationMessage = 3;
+      repeated NotificationMessage data = 3;
     }
     message NotificationMessage{
-      int32  uuid   =1;              
+      int32  id   =1;              
       string title =2;              
       string body =3;               
       string status = 4;             
