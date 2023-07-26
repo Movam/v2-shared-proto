@@ -27,16 +27,17 @@ service NotificationService {
       int32 statusCode = 1;
       repeated string error = 2;
       repeated NotificationMessage data = 3;
+      int32 count = 4;
     }
     message NotificationMessage{
-      int32  id   =1;              
+      string  id   =1;              
       string title =2;              
       string body =3;               
       string status = 4;                 
     }
     message ReadNotificationRequest {
       string email = 1;
-      int32 messageId = 2;
+      string messageId = 2;
     }
    message ReadNotificationResponse {
       int32 statusCode = 1;
