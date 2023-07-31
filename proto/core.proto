@@ -84,9 +84,12 @@ message ValidateOTPResponse {
 
 // Resend OTP
 message ResendOTPRequest {
-  string email = 1;
+  optional string email = 1;
   string type = 2;
+  optional string phoneCode = 3;
+  optional string phoneNumber = 4;
 }
+
 message ResendOTPResponse {
   int32 statusCode = 1;
   repeated string error = 2;
