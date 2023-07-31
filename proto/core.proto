@@ -142,6 +142,12 @@ message LoginResponse {
   optional string userId = 4;
 }
 
+message LoginDriverRequest {
+  string phoneCode = 1;
+  string phoneNumber = 2;
+  string password = 3;
+}
+
 // ForgotPassword
 message ForgotPasswordRequest {
   string email = 1;
