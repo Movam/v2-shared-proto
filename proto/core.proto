@@ -7,6 +7,7 @@ service CoreService {
   rpc RegisterDriver (RegisterDriverRequest) returns (RegisterDriverResponse) {}
   rpc FinalRegisterDriver (RegisterDriverRequest) returns (RegisterDriverResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc LoginDriver (LoginDriverRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateOTP (ValidateOTPRequest) returns (ValidateOTPResponse) {}
   rpc ResendOTP (ResendOTPRequest) returns (ResendOTPResponse) {}
