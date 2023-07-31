@@ -76,6 +76,8 @@ message ValidateOTPResponse {
   bool verified = 3;
   optional string token = 4;
   optional string userId = 5;
+  optional string phoneCode = 6;
+  optional string phoneNumber = 7;
 }
 
 // Resend OTP
