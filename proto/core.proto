@@ -53,6 +53,7 @@ message RegisterResponse {
 message RegisterDriverRequest {
   string phoneCode = 1;
   string phoneNumber = 2;
+  optional string password = 3;
 }
 message RegisterDriverResponse {
   int32 statusCode = 1;
