@@ -325,3 +325,14 @@ message GetOrganisationByAccountNoResponse {
 message GetOrganisationByAccountNoRequest {
   string accountNo = 1;
 }
+
+
+message ChangeDriverStatusRequest {
+  string ulid = 1;
+}
+
+message ChangeDriverStatusResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  bool success = 3;
+}
