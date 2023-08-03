@@ -25,6 +25,7 @@ service CoreService {
   rpc GetOrganizationPermissions (GetOrganizationPermissionsRequest) returns (GetOrganizationPermissionsResponse) {}
   rpc GetAuthUser (GetAuthUserRequest) returns (GetAuthUserResponse) {}
   rpc getOrganisationByAccountNo (GetOrganisationByAccountNoRequest) returns (GetOrganisationByAccountNoResponse) {}
+  rpc ChangeOfStatusOfDriver (ChangeDriverStatusRequest) returns (ChangeDriverStatusResponse) {}
  }
 
 message GetAuthUserRequest {
@@ -330,7 +331,6 @@ message GetOrganisationByAccountNoRequest {
 message ChangeDriverStatusRequest {
   string ulid = 1;
 }
-
 message ChangeDriverStatusResponse {
   int32 statusCode = 1;
   repeated string error = 2;
