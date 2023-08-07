@@ -9,6 +9,7 @@ service CoreService {
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc LoginDriver (LoginDriverRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc ValidateDriver (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateOTP (ValidateOTPRequest) returns (ValidateOTPResponse) {}
   rpc ResendOTP (ResendOTPRequest) returns (ResendOTPResponse) {}
   rpc ShipperOrganization (ShipperOrganizationRequest) returns (ShipperOrganizationResponse) {}
