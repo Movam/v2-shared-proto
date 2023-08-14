@@ -338,6 +338,7 @@ message Configuration{
   string status = 4;
   string default = 5;
   string createdAt = 6;
+  optional string options = 7;
 }
 
 message GetOrganisationByAccountNoResponse {
