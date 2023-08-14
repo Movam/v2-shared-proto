@@ -302,7 +302,7 @@ message User{
   optional Organization organization = 10;
   string meta = 11;
   optional int32 orgId = 12;
-  optional Configuration configuration = 13;
+  optional Config configuration = 13;
 }
 // Organization
 message Organization{
@@ -330,6 +330,9 @@ message Role{
   optional CreatedBy reportingTo = 8;
 }
 
+message Config{
+  repeated Configuration configuration = 1;
+}
 //Configuration
 message Configuration{
   string id = 1;
