@@ -15,6 +15,7 @@ service CoreService {
   rpc ShipperOrganization (ShipperOrganizationRequest) returns (ShipperOrganizationResponse) {}
   rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
   rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
+  rpc ForgotPasswordForDriver (ForgotPasswordDriverRequest) returns (ForgotPasswordResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc GetUsers (GetUsersRequest) returns (GetUsersResponse) {}
   rpc GetUsersByOrgId (GetUsersByOrgIdRequest) returns (GetUsersResponse) {}
@@ -155,11 +156,20 @@ message LoginDriverRequest {
 message ForgotPasswordRequest {
   string email = 1;
 }
+
+message ForgotPasswordDriverRequest {
+  string phoneCode = 1;
+  string phoneNumber = 2;
+}
+
 message ForgotPasswordResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  string email = 3;
+  optional string email = 3;
   bool valid = 4;
+  optional string phoneCode = 5;
+  optional string phoneNumber = 6;
+
 }
 
 // ChangePassword
