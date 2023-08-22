@@ -46,7 +46,7 @@ service NotificationService {
       string id = 3;
     }
     message UpdateUserTokensStateRequest {
-      string userId = 1;
+      int32 userId = 1;
       int32 orgId = 2;
       bool active = 3;
     }
