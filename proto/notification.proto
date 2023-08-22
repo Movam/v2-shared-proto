@@ -19,7 +19,7 @@ service NotificationService {
       string id = 3;
     }
     message GetNotificationMessagesRequest {
-      string email = 1;
+      int32 orgId = 1;
       optional int32 skip = 2;
       optional int32 take = 3;
     }
@@ -28,11 +28,10 @@ service NotificationService {
       repeated string error = 2;
       repeated NotificationMessage data = 3;
     }
-    message NotificationMessage{
-      string  uuid   =1;              
-      string title =2;              
-      string body =3;               
-      string status = 4;                 
+    message NotificationMessage{              
+      string title = 1;              
+      string body = 2;               
+      string dateTime = 3;                 
     }
     message ReadNotificationRequest {
       string email = 1;
