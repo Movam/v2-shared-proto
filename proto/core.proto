@@ -28,6 +28,7 @@ service CoreService {
   rpc GetAuthUser (GetAuthUserRequest) returns (GetAuthUserResponse) {}
   rpc getOrganisationByAccountNo (GetOrganisationByAccountNoRequest) returns (GetOrganisationByAccountNoResponse) {}
   rpc ChangeOfStatusOfDriver (ChangeDriverStatusRequest) returns (ChangeDriverStatusResponse) {}
+  rpc VerifyUserDeviceId (VerifyUserDeviceIdRequest) returns (VerifyUserDeviceIdResponse) {}
  }
 
 message GetAuthUserRequest {
@@ -339,7 +340,7 @@ message Configuration{
   string name = 2;
   int32 orgId = 3;
   string status = 4;
-  string default = 5;
+  bool default = 5;
   string createdAt = 6;
   optional string options = 7;
 }
@@ -358,6 +359,20 @@ message ChangeDriverStatusRequest {
   string ulid = 1;
 }
 message ChangeDriverStatusResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  bool success = 3;
+}
+
+message VerifyUserDeviceIdRequest {
+  string phoneCode = 1;
+  string phoneNumber = 2;
+  string deviceId = 3;
+  bool change = 4;
+  bool remove = 5;
+}
+
+message VerifyUserDeviceIdResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool success = 3;
