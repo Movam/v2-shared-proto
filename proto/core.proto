@@ -368,8 +368,8 @@ message VerifyUserDeviceIdRequest {
   string phoneCode = 1;
   string phoneNumber = 2;
   string deviceId = 3;
-  bool change = 4;
-  bool remove = 5;
+  optional bool change = 4;
+  optional bool remove = 5;
 }
 
 message VerifyUserDeviceIdResponse {
