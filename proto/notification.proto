@@ -5,13 +5,15 @@ package notification;
 service NotificationService {
    rpc RegisterDevice (RegisterDeviceRequest) returns (RegisterDeviceResponse) {}
    rpc GetNotificationMessages (GetNotificationMessagesRequest) returns (GetNotificationMessagesResponse) {}
-   rpc ReadNotification (ReadNotificationRequest) returns (ReadNotificationResponse) {}
+   rpc UpdateTokenState (UpdateTokenStateRequest) returns (UpdateTokenStateResponse) {}
+   rpc UpdateUserTokensState (UpdateUserTokensStateRequest) returns (UpdateUserTokensStateResponse) {}
    }
  
    message RegisterDeviceRequest {
-      string deviceToken = 1;
-      string deviceType = 2;
-      string email = 3;
+      int32 orgId = 1;
+      int32 userId = 2;
+      string deviceToken = 3;
+      string deviceType = 4;
     }
    message RegisterDeviceResponse {
       int32 statusCode = 1;
@@ -19,7 +21,7 @@ service NotificationService {
       string id = 3;
     }
     message GetNotificationMessagesRequest {
-      string email = 1;
+      int32 orgId = 1;
       optional int32 skip = 2;
       optional int32 take = 3;
     }
@@ -28,18 +30,27 @@ service NotificationService {
       repeated string error = 2;
       repeated NotificationMessage data = 3;
     }
-    message NotificationMessage{
-      string  uuid   =1;              
-      string title =2;              
-      string body =3;               
-      string status = 4;                 
+    message NotificationMessage{              
+      string title = 1;              
+      string body = 2;               
+      string dateTime = 3;                 
     }
-    message ReadNotificationRequest {
-      string email = 1;
-      string messageId = 2;
+    message UpdateTokenStateRequest {
+      string id = 1;
+      int32 orgId = 2;
+      bool active = 3;
     }
-   message ReadNotificationResponse {
+   message UpdateTokenStateResponse {
       int32 statusCode = 1;
       repeated string error = 2;
-      bool isRead = 3;
+      string id = 3;
+    }
+    message UpdateUserTokensStateRequest {
+      int32 userId = 1;
+      int32 orgId = 2;
+      bool active = 3;
+    }
+   message UpdateUserTokensStateResponse {
+      int32 statusCode = 1;
+      repeated string error = 2;
     }
