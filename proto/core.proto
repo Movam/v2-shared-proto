@@ -304,6 +304,7 @@ message User{
   string meta = 11;
   optional int32 orgId = 12;
   optional Config configuration = 13;
+  optional int32 user_id = 14;
 }
 // Organization
 message Organization{
