@@ -29,7 +29,7 @@ service CoreService {
   rpc getOrganisationByAccountNo (GetOrganisationByAccountNoRequest) returns (GetOrganisationByAccountNoResponse) {}
   rpc ChangeOfStatusOfDriver (ChangeDriverStatusRequest) returns (ChangeDriverStatusResponse) {}
   rpc VerifyUserDeviceId (VerifyUserDeviceIdRequest) returns (VerifyUserDeviceIdResponse) {}
-  rpc GetOrganisationOrgId (GetUsersByOrgIdRequest) returns (GetOrgnisationResponse) {}
+  rpc GetOrganisationOrgId (GetUsersByOrgIdRequest) returns (GetOrganisationByAccountNoResponse) {}
  }
 
 message GetAuthUserRequest {
