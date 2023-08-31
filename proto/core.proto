@@ -29,6 +29,7 @@ service CoreService {
   rpc getOrganisationByAccountNo (GetOrganisationByAccountNoRequest) returns (GetOrganisationByAccountNoResponse) {}
   rpc ChangeOfStatusOfDriver (ChangeDriverStatusRequest) returns (ChangeDriverStatusResponse) {}
   rpc VerifyUserDeviceId (VerifyUserDeviceIdRequest) returns (VerifyUserDeviceIdResponse) {}
+  rpc GetOrganisationOrgId (GetUsersByOrgIdRequest) returns (GetOrgnisationResponse) {}
  }
 
 message GetAuthUserRequest {
@@ -210,6 +211,12 @@ message GetUsersResponse {
   repeated User data = 3;
 }
 
+message GetOrgnisationResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  repeated Organization data = 3;
+}
+
 message AddUserRequest {
   string name = 1;
   string email = 2;
@@ -314,6 +321,7 @@ message Organization{
   string updatedAt = 4;
   string createdAt = 5;
   string meta = 6;
+  optional User user = 7;
 }
 // Permissions
 message Permission{
