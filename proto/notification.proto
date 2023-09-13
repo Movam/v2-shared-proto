@@ -12,8 +12,10 @@ service NotificationService {
    message RegisterDeviceRequest {
       int32 orgId = 1;
       int32 userId = 2;
-      string deviceToken = 3;
-      string deviceType = 4;
+      string orgUuid = 3;
+      string userUuid = 4;
+      string deviceToken = 5;
+      string deviceType = 6;
     }
    message RegisterDeviceResponse {
       int32 statusCode = 1;
