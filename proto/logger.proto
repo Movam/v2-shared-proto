@@ -4,6 +4,8 @@ package logger;
 
 service LoggerService {
     rpc Log (LogRequest) returns (LogResponse) {}
+    rpc NotificationLog (NotificationLogRequest) returns (LogResponse) {}
+    rpc GetNotificationLog (GetNotificationLogRequest) returns (LogResponse) {}
    }
   message LogRequest{
     string method= 1;
@@ -21,4 +23,22 @@ service LoggerService {
   message LogResponse{
     int32 statusCode = 1;
     repeated string error = 2;
+    repeated GetNotificationLog data = 3;
+  }
+
+  message NotificationLogRequest{
+    string eventName = 1;
+    string payload= 2;
+  }
+
+  message GetNotificationLogRequest{
+    optional string to = 1;
+    optional string from= 2;
+  }
+
+  message GetNotificationLog {
+    int32 id =1;
+    string eventName =2;
+    string payload =3;
+    string createdAt = 4;
   }
