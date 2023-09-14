@@ -29,6 +29,7 @@ service LoggerService {
   message NotificationLogRequest{
     string eventName = 1;
     string payload= 2;
+    string response = 3;
   }
 
   message GetNotificationLogRequest{
@@ -40,5 +41,6 @@ service LoggerService {
     int32 id =1;
     string eventName =2;
     string payload =3;
-    string createdAt = 4;
+    string response = 4;
+    string createdAt = 5;
   }
