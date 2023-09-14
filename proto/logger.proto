@@ -35,6 +35,7 @@ service LoggerService {
   message GetNotificationLogRequest{
     optional string to = 1;
     optional string from= 2;
+    optional string search= 3;
   }
 
   message GetNotificationLog {
