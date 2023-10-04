@@ -125,8 +125,8 @@ message LogisticOrganizationRequest {
   string city = 4;
   string companyAddress = 5;
   string companyWebsite = 6;
-  int32 noOfDrivers = 7;
-  int32 noOfVehicles = 8;
+  optional int32 noOfDrivers = 7;
+  optional int32 noOfVehicles = 8;
   bool acceptsShipment = 9;
   string userId = 10;
   optional string referralCode = 11;
