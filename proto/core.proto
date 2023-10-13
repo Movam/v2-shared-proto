@@ -378,7 +378,7 @@ message VerifyUserDeviceIdRequest {
   string phoneCode = 1;
   string phoneNumber = 2;
   string deviceId = 3;
-  optional bool new = 4;
+  optional bool firstLogin = 4;
 }
 
 message VerifyUserDeviceIdResponse {
