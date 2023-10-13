@@ -146,6 +146,7 @@ message LoginResponse {
   repeated string error = 2;
   optional string token = 3;
   optional string userId = 4;
+  optional string userType = 5;
 }
 
 message LoginDriverRequest {
