@@ -353,6 +353,7 @@ message Configuration{
   bool default = 5;
   string createdAt = 6;
   optional string options = 7;
+  optional string value = 8;
 }
 
 message GetOrganisationByAccountNoResponse {
