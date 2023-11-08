@@ -30,6 +30,7 @@ service CoreService {
   rpc ChangeOfStatusOfDriver (ChangeDriverStatusRequest) returns (ChangeDriverStatusResponse) {}
   rpc VerifyUserDeviceId (VerifyUserDeviceIdRequest) returns (VerifyUserDeviceIdResponse) {}
   rpc GetOrganisationOrgId (GetUsersByOrgIdRequest) returns (GetOrganisationByAccountNoResponse) {}
+  rpc DisableSubUser (GetUsersRequest) returns (DisableSubUserResponse) {}
  }
 
 message GetAuthUserRequest {
@@ -383,6 +384,12 @@ message VerifyUserDeviceIdRequest {
 }
 
 message VerifyUserDeviceIdResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  bool success = 3;
+}
+
+message DisableSubUserResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool success = 3;
