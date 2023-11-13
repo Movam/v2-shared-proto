@@ -31,7 +31,7 @@ service CoreService {
   rpc VerifyUserDeviceId (VerifyUserDeviceIdRequest) returns (VerifyUserDeviceIdResponse) {}
   rpc GetOrganisationOrgId (GetUsersByOrgIdRequest) returns (GetOrganisationByAccountNoResponse) {}
   rpc DisableSubUser (GetUsersRequest) returns (DisableSubUserResponse) {}
-  rpc Logout (ValidateRequest) returns (ValidateResponse) {}
+  rpc Logout (LogoutRequest) returns (ValidateResponse) {}
  }
 
 message GetAuthUserRequest {
@@ -394,4 +394,9 @@ message DisableSubUserResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool success = 3;
+}
+
+message LogoutRequest {
+  string email = 1;
+  int32 orgId = 2;
 }
