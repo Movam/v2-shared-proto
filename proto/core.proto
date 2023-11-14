@@ -397,6 +397,6 @@ message DisableSubUserResponse {
 }
 
 message LogoutRequest {
-  string email = 1;
+  string userId = 1;
   int32 orgId = 2;
 }
