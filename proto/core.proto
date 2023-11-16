@@ -8,6 +8,7 @@ service CoreService {
   rpc FinalRegisterDriver (RegisterDriverRequest) returns (RegisterDriverResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc LoginDriver (LoginDriverRequest) returns (LoginResponse) {}
+  rpc Logout (LogoutRequest) returns (ValidateResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateDriver (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateOTP (ValidateOTPRequest) returns (ValidateOTPResponse) {}
@@ -31,7 +32,6 @@ service CoreService {
   rpc VerifyUserDeviceId (VerifyUserDeviceIdRequest) returns (VerifyUserDeviceIdResponse) {}
   rpc GetOrganisationOrgId (GetUsersByOrgIdRequest) returns (GetOrganisationByAccountNoResponse) {}
   rpc DisableSubUser (GetUsersRequest) returns (DisableSubUserResponse) {}
-  rpc Logout (LogoutRequest) returns (ValidateResponse) {}
  }
 
 message GetAuthUserRequest {
