@@ -399,4 +399,5 @@ message DisableSubUserResponse {
 message LogoutRequest {
   string userId = 1;
   int32 orgId = 2;
+  optional string deviceType = 3;
 }
