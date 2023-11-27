@@ -1,5 +1,40 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
+
 package finance;
 
-service FinanceService {}
+service FinanceService {
+    rpc CreatePlan (PlanRequest) returns (PlanResponse) {}
+    rpc GetPlans (google.protobuf.Empty) returns (GetPlansResponse) {}
+}
+
+message PlanRequest {
+    string title = 1;
+    string subTitle = 2;
+    int32 duration = 3;
+    int32 price = 4;
+    optional string description = 5;
+    optional string meta = 6;
+}
+
+message PlanResponse {
+    int32 statusCode = 1;
+    repeated string error = 2;  
+}
+
+message GetPlansResponse {
+    int32 statusCode = 1;
+    repeated string error = 2;
+    repeated Plan data = 3;
+}
+
+message Plan {
+    string id = 1;
+    string title = 2;
+    string subTitle = 3;
+    int32 duration = 4;
+    int32 price = 5;
+    optional string description = 6;
+    optional string meta = 7;
+}
