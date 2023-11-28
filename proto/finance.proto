@@ -35,6 +35,7 @@ message Plan {
     string subTitle = 3;
     int32 duration = 4;
     int32 price = 5;
-    optional string description = 6;
-    optional string meta = 7;
+    bool active = 6;
+    optional string description = 7;
+    optional string meta = 8;
 }
