@@ -35,5 +35,5 @@ message Plan {
     string subTitle = 3;
     bool active = 4;
     optional string description = 5;
-    string attibutes = 6;
+    string attributes = 6;
 }
