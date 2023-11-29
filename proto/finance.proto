@@ -1,12 +1,10 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
-
 package finance;
 
 service FinanceService {
     rpc CreatePlan (PlanRequest) returns (PlanResponse) {}
-    rpc GetPlans (google.protobuf.Empty) returns (GetPlansResponse) {}
+    rpc GetPlans (GetPlansRequest) returns (GetPlansResponse) {}
 }
 
 message PlanRequest {
@@ -36,4 +34,8 @@ message Plan {
     bool active = 4;
     optional string description = 5;
     string attributes = 6;
+}
+
+message GetPlansRequest {
+    optional string currencyType = 1;
 }
