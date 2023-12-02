@@ -5,6 +5,7 @@ package notification;
 service NotificationService {
    rpc RegisterDevice (RegisterDeviceRequest) returns (RegisterDeviceResponse) {}
    rpc GetNotificationMessages (GetNotificationMessagesRequest) returns (GetNotificationMessagesResponse) {}
+   rpc GetUserNotificationMessages (GetUserNotificationMessagesRequest) returns (GetUserNotificationMessagesResponse) {}
    rpc UpdateTokenState (UpdateTokenStateRequest) returns (UpdateTokenStateResponse) {}
    rpc UpdateUserTokensState (UpdateUserTokensStateRequest) returns (UpdateUserTokensStateResponse) {}
    }
@@ -29,6 +30,17 @@ service NotificationService {
       optional int32 take = 4;
     }
     message GetNotificationMessagesResponse {
+      int32 statusCode = 1;
+      repeated string error = 2;
+      repeated NotificationMessage data = 3;
+    }
+    message GetUserNotificationMessagesRequest {
+      int32 orgId = 1;
+      int32 userId = 2;
+      optional int32 skip = 3;
+      optional int32 take = 4;
+    }
+    message GetUserNotificationMessagesResponse {
       int32 statusCode = 1;
       repeated string error = 2;
       repeated NotificationMessage data = 3;
