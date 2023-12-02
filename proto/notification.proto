@@ -24,8 +24,9 @@ service NotificationService {
     }
     message GetNotificationMessagesRequest {
       int32 orgId = 1;
-      optional int32 skip = 2;
-      optional int32 take = 3;
+      int32 userId = 2;
+      optional int32 skip = 3;
+      optional int32 take = 4;
     }
     message GetNotificationMessagesResponse {
       int32 statusCode = 1;
@@ -33,10 +34,12 @@ service NotificationService {
       repeated NotificationMessage data = 3;
     }
     message NotificationMessage{ 
-      string userId = 1;             
-      string title = 2;              
-      string body = 3;               
-      string dateTime = 4;                 
+      string messageId = 1;             
+      string userId = 2; 
+      string recipientId = 3; 
+      string title = 4;              
+      string body = 5;               
+      string dateTime = 6;                 
     }
     message UpdateTokenStateRequest {
       string id = 1;
