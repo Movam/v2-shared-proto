@@ -6,8 +6,8 @@ service NotificationService {
    rpc RegisterDevice (RegisterDeviceRequest) returns (RegisterDeviceResponse) {}
    rpc GetNotificationMessages (GetNotificationMessagesRequest) returns (GetNotificationMessagesResponse) {}
    rpc GetUserNotificationMessages (GetUserNotificationMessagesRequest) returns (GetUserNotificationMessagesResponse) {}
-   rpc UpdateTokenState (UpdateTokenStateRequest) returns (UpdateTokenStateResponse) {}
-   rpc UpdateUserTokensState (UpdateUserTokensStateRequest) returns (UpdateUserTokensStateResponse) {}
+   rpc UpdateNotificationRead (UpdateNotificationReadRequest) returns (UpdateNotificationReadResponse) {}
+   rpc BulkUpdateNotificationRead (BulkUpdateNotificationReadRequest) returns (BulkUpdateNotificationReadResponse) {}
    }
  
    message RegisterDeviceRequest {
@@ -53,22 +53,23 @@ service NotificationService {
       string body = 5;               
       string dateTime = 6;                 
     }
-    message UpdateTokenStateRequest {
-      string id = 1;
-      int32 orgId = 2;
-      bool active = 3;
+    message UpdateNotificationReadRequest {
+      string messageId = 1;
+      int32 userId = 2;
+      int32 orgId = 3;
     }
-   message UpdateTokenStateResponse {
+   message UpdateNotificationReadResponse {
       int32 statusCode = 1;
       repeated string error = 2;
-      string id = 3;
+      string messageId = 3;
     }
-    message UpdateUserTokensStateRequest {
-      int32 userId = 1;
-      int32 orgId = 2;
-      bool active = 3;
+    message BulkUpdateNotificationReadRequest {
+      repeated string messageIds = 1;
+      int32 userId = 2;
+      int32 orgId = 3;
     }
-   message UpdateUserTokensStateResponse {
+   message BulkUpdateNotificationReadResponse {
       int32 statusCode = 1;
       repeated string error = 2;
     }
+    
