@@ -47,7 +47,7 @@ service NotificationService {
     }
     message NotificationMessage{ 
       string messageId = 1;             
-      string userId = 2; 
+      string creatorId = 2; 
       string recipientId = 3; 
       string title = 4;              
       string body = 5;               
