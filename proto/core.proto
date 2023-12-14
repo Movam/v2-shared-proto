@@ -325,7 +325,7 @@ message Organization{
   string createdAt = 5;
   string meta = 6;
   optional User user = 7;
-  string uuid = 8;
+  optional string uuid = 8;
 }
 // Permissions
 message Permission{
