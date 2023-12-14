@@ -4,10 +4,10 @@ package notification;
 
 service NotificationService {
    rpc RegisterDevice (RegisterDeviceRequest) returns (RegisterDeviceResponse) {}
-   rpc DeleteDevice (DeleteDeviceRequest) returns (DeleteDeviceResponse) {}
    rpc GetNotificationMessages (GetNotificationMessagesRequest) returns (GetNotificationMessagesResponse) {}
-   rpc UpdateTokenState (UpdateTokenStateRequest) returns (UpdateTokenStateResponse) {}
-   rpc UpdateUserTokensState (UpdateUserTokensStateRequest) returns (UpdateUserTokensStateResponse) {}
+   rpc GetUserNotificationMessages (GetUserNotificationMessagesRequest) returns (GetUserNotificationMessagesResponse) {}
+   rpc UpdateNotificationRead (UpdateNotificationReadRequest) returns (UpdateNotificationReadResponse) {}
+   rpc BulkUpdateNotificationRead (BulkUpdateNotificationReadRequest) returns (BulkUpdateNotificationReadResponse) {}
    }
  
    message RegisterDeviceRequest {
@@ -23,47 +23,53 @@ service NotificationService {
       repeated string error = 2;
       string id = 3;
     }
-    message DeleteDeviceRequest {
-      int32 orgId = 1;
-      int32 userId = 2;
-      string deviceType = 3;
-    }
-   message DeleteDeviceResponse {
-      int32 statusCode = 1;
-      repeated string error = 2;
-    }
     message GetNotificationMessagesRequest {
       int32 orgId = 1;
-      optional int32 skip = 2;
-      optional int32 take = 3;
+      int32 userId = 2;
+      optional int32 skip = 3;
+      optional int32 take = 4;
     }
     message GetNotificationMessagesResponse {
       int32 statusCode = 1;
       repeated string error = 2;
       repeated NotificationMessage data = 3;
     }
+    message GetUserNotificationMessagesRequest {
+      int32 orgId = 1;
+      int32 userId = 2;
+      optional int32 skip = 3;
+      optional int32 take = 4;
+    }
+    message GetUserNotificationMessagesResponse {
+      int32 statusCode = 1;
+      repeated string error = 2;
+      repeated NotificationMessage data = 3;
+    }
     message NotificationMessage{ 
-      string userId = 1;             
-      string title = 2;              
-      string body = 3;               
-      string dateTime = 4;                 
+      string messageId = 1;             
+      string creatorId = 2; 
+      string recipientId = 3; 
+      string title = 4;              
+      string body = 5;               
+      string dateTime = 6;                 
     }
-    message UpdateTokenStateRequest {
-      string id = 1;
-      int32 orgId = 2;
-      bool active = 3;
+    message UpdateNotificationReadRequest {
+      string messageId = 1;
+      int32 userId = 2;
+      int32 orgId = 3;
     }
-   message UpdateTokenStateResponse {
+   message UpdateNotificationReadResponse {
       int32 statusCode = 1;
       repeated string error = 2;
-      string id = 3;
+      string messageId = 3;
     }
-    message UpdateUserTokensStateRequest {
-      int32 userId = 1;
-      int32 orgId = 2;
-      bool active = 3;
+    message BulkUpdateNotificationReadRequest {
+      repeated string messageIds = 1;
+      int32 userId = 2;
+      int32 orgId = 3;
     }
-   message UpdateUserTokensStateResponse {
+   message BulkUpdateNotificationReadResponse {
       int32 statusCode = 1;
       repeated string error = 2;
     }
+    
