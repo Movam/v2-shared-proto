@@ -408,4 +408,5 @@ message FiterUpdateRequest {
   string type = 1;
   string startDate = 2;
   string endDate = 3;
+  string userId = 4;
 }
