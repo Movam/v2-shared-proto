@@ -317,6 +317,7 @@ message User{
   optional Config configuration = 13;
   optional int32 user_id = 14;
   optional string attributes = 15;
+  optional string orgUuid = 16;
 }
 // Organization
 message Organization{
