@@ -5,6 +5,7 @@ package finance;
 service FinanceService {
     rpc CreatePlan (PlanRequest) returns (PlanResponse) {}
     rpc GetPlans (GetPlansRequest) returns (GetPlansResponse) {}
+    rpc Webhook(WebhookRequest) returns(WebhookResponse){}
 }
 
 message PlanRequest {
@@ -38,4 +39,12 @@ message Plan {
 
 message GetPlansRequest {
     optional string currencyType = 1;
+}
+
+message WebhookRequest {
+    string request = 1;
+}
+
+message WebhookResponse {
+    int32 statusCode = 1;
 }
