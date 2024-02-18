@@ -4,6 +4,7 @@ package logger;
 
 service LoggerService {
     rpc Log (LogRequest) returns (LogResponse) {}
+    rpc WebhookLog (LogRequest) returns (LogResponse) {}
     rpc NotificationLog (NotificationLogRequest) returns (LogResponse) {}
     rpc GetNotificationLog (GetNotificationLogRequest) returns (LogResponse) {}
    }
