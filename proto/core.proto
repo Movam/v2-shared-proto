@@ -33,7 +33,8 @@ service CoreService {
   rpc GetOrganisationOrgId (GetUsersByOrgIdRequest) returns (GetOrganisationByAccountNoResponse) {}
   rpc DisableSubUser (GetUsersRequest) returns (DisableSubUserResponse) {}
   rpc UpdateFilterRequest (FiterUpdateRequest) returns (DisableSubUserResponse) {}
- }
+  rpc ContactUs (ContactUsRequest) returns (ContactUsResponse) {}
+}
 
 message GetAuthUserRequest {
   string userId = 1;
@@ -410,4 +411,15 @@ message FiterUpdateRequest {
   string startDate = 2;
   string endDate = 3;
   string userId = 4;
+}
+
+message ContactUsRequest {
+  string userId = 1;
+  string message = 2;
+}
+
+message ContactUsResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  bool success = 3;
 }
