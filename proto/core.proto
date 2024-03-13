@@ -416,6 +416,7 @@ message FiterUpdateRequest {
 message ContactUsRequest {
   string userId = 1;
   string message = 2;
+  string title = 3;
 }
 
 message ContactUsResponse {
