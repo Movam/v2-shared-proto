@@ -118,6 +118,7 @@ message ValidateOTPResponse {
   optional string userId = 5;
   optional string phoneCode = 6;
   optional string phoneNumber = 7;
+  optional string email = 8;
 }
 
 // Resend OTP
