@@ -139,7 +139,7 @@ message ResendOTPResponse {
 message MerchantOrganizationRequest {
   string companyName = 1;
   bool registeredWithCAC = 2;
-  string CACRegistrationNumber = 3;
+  optional string CACRegistrationNumber = 3;
   string userId = 7;
 }
 message MerchantOrganizationResponse {
