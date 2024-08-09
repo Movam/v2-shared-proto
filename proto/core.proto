@@ -5,7 +5,9 @@ package core;
 service CoreService {
   rpc Register (RegisterRequest) returns (RegisterResponse) {}
   rpc RegisterDriver (RegisterDriverRequest) returns (RegisterDriverResponse) {}
+  rpc RegisterMerchant (RegisterMerchantRequest) returns (RegisterMerchantResponse) {}
   rpc FinalRegisterDriver (RegisterDriverRequest) returns (RegisterDriverResponse) {}
+  rpc FinalRegisterMerchant (FinalMerchantRegistrationRequest) returns (FinalMerchantRegistrationResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc LoginDriver (LoginDriverRequest) returns (LoginResponse) {}
   rpc Logout (LogoutRequest) returns (ValidateResponse) {}
@@ -15,6 +17,7 @@ service CoreService {
   rpc ResendOTP (ResendOTPRequest) returns (ResendOTPResponse) {}
   rpc ShipperOrganization (ShipperOrganizationRequest) returns (ShipperOrganizationResponse) {}
   rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
+  rpc MerchantOrganization (MerchantOrganizationRequest) returns (MerchantOrganizationResponse) {}
   rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ForgotPasswordForDriver (ForgotPasswordDriverRequest) returns (ForgotPasswordResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
@@ -73,6 +76,31 @@ message RegisterDriverResponse {
   string phoneNumber = 4;
 }
 
+// Register Merchant
+message RegisterMerchantRequest {
+  string email = 1;
+}
+message RegisterMerchantResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  string email = 3;
+}
+
+message FinalMerchantRegistrationRequest {
+  string email = 1;
+  string password = 2;
+  string name = 3;
+  string phoneCode = 4;
+  string phoneNumber = 5;
+  bool termsCondition = 6;
+}
+
+message FinalMerchantRegistrationResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  optional string userId = 3;
+}
+
 // Validate OTP
 message ValidateOTPRequest {
   optional string email = 1;
@@ -104,6 +132,18 @@ message ResendOTPResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool sent = 3;
+}
+
+// Register Merchant Organization
+message MerchantOrganizationRequest {
+  string companyName = 1;
+  bool registeredWithCAC = 2;
+  string CACRegistrationNumber = 3;
+  string userId = 7;
+}
+message MerchantOrganizationResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
 }
 
 // Register Shipper Organization
