@@ -17,7 +17,6 @@ service CoreService {
   rpc ResendOTP (ResendOTPRequest) returns (ResendOTPResponse) {}
   rpc ShipperOrganization (ShipperOrganizationRequest) returns (ShipperOrganizationResponse) {}
   rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
-  rpc MerchantOrganization (MerchantOrganizationRequest) returns (MerchantOrganizationResponse) {}
   rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ForgotPasswordForDriver (ForgotPasswordDriverRequest) returns (ForgotPasswordResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
@@ -89,19 +88,22 @@ message RegisterMerchantResponse {
   string email = 3;
 }
 
+// Register Merchant User and Organization
 message FinalMerchantRegistrationRequest {
   string email = 1;
   string password = 2;
   string name = 3;
   string phoneCode = 4;
   string phoneNumber = 5;
-  bool termsCondition = 6;
+  string companyName = 6;
+  bool registeredWithCAC = 7;
+  optional string CACRegistrationNumber = 8;
+  bool termsCondition = 9;
 }
 
 message FinalMerchantRegistrationResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  optional string userId = 3;
 }
 
 // Validate OTP
@@ -136,18 +138,6 @@ message ResendOTPResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool sent = 3;
-}
-
-// Register Merchant Organization
-message MerchantOrganizationRequest {
-  string companyName = 1;
-  bool registeredWithCAC = 2;
-  optional string CACRegistrationNumber = 3;
-  string userId = 7;
-}
-message MerchantOrganizationResponse {
-  int32 statusCode = 1;
-  repeated string error = 2;
 }
 
 // Register Shipper Organization
@@ -479,7 +469,7 @@ message GoogleAppResponse {
 
 // Register With Google
 message GoogleRegisterRequest {
-  string googleToken = 1;
+  string authCode = 1;
   
 }
 message GoogleRegisterResponse {
@@ -491,7 +481,7 @@ message GoogleRegisterResponse {
 
 // Login With Google
 message GoogleLoginRequest {
-  string googleToken = 1;
+  string authCode = 1;
   
 }
 message GoogleLoginResponse {
