@@ -37,8 +37,8 @@ service CoreService {
   rpc UpdateFilterRequest (FiterUpdateRequest) returns (DisableSubUserResponse) {}
   rpc ContactUs (ContactUsRequest) returns (ContactUsResponse) {}
   rpc GoogleApp (GoogleAppRequest) returns (GoogleAppResponse) {}
-  rpc GoogleRegister (GoogleRegisterRequest) returns (GoogleRegisterResponse) {}
-  rpc GoogleLogin (GoogleLoginRequest) returns (GoogleLoginResponse) {}
+  rpc GoogleAuth (GoogleAuthRequest) returns (GoogleAuthResponse) {}
+  
 }
 
 message GetAuthUserRequest {
@@ -467,26 +467,19 @@ message GoogleAppResponse {
   string googleAuthorizationUrl = 3;
 }
 
-// Register With Google
-message GoogleRegisterRequest {
+// Authenticate With Google
+message GoogleAuthRequest {
   string authCode = 1;
   
 }
-message GoogleRegisterResponse {
+message GoogleAuthResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  bool verified = 3;
-  string email = 4;
+  string redirect = 3;
+  optional bool verified = 4;
+  optional string email = 5;
+  optional string token = 6;
+  
 }
 
-// Login With Google
-message GoogleLoginRequest {
-  string authCode = 1;
-  
-}
-message GoogleLoginResponse {
-  int32 statusCode = 1;
-  repeated string error = 2;
-  string token = 3;
-}
 
