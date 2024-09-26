@@ -17,7 +17,6 @@ service CoreService {
   rpc ResendOTP (ResendOTPRequest) returns (ResendOTPResponse) {}
   rpc ShipperOrganization (ShipperOrganizationRequest) returns (ShipperOrganizationResponse) {}
   rpc LogisticOrganization (LogisticOrganizationRequest) returns (LogisticOrganizationResponse) {}
-  rpc MerchantOrganization (MerchantOrganizationRequest) returns (MerchantOrganizationResponse) {}
   rpc ForgotPassword (ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc ForgotPasswordForDriver (ForgotPasswordDriverRequest) returns (ForgotPasswordResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {}
@@ -38,6 +37,9 @@ service CoreService {
   rpc UpdateFilterRequest (FiterUpdateRequest) returns (DisableSubUserResponse) {}
   rpc ContactUs (ContactUsRequest) returns (ContactUsResponse) {}
   rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc GoogleApp (GoogleAppRequest) returns (GoogleAppResponse) {}
+  rpc GoogleAuth (GoogleAuthRequest) returns (GoogleAuthResponse) {}
+  
 }
 
 message GetAuthUserRequest {
@@ -87,19 +89,22 @@ message RegisterMerchantResponse {
   string email = 3;
 }
 
+// Register Merchant User and Organization
 message FinalMerchantRegistrationRequest {
   string email = 1;
   string password = 2;
   string name = 3;
   string phoneCode = 4;
   string phoneNumber = 5;
-  bool termsCondition = 6;
+  string companyName = 6;
+  bool registeredWithCAC = 7;
+  optional string CACRegistrationNumber = 8;
+  bool termsCondition = 9;
 }
 
 message FinalMerchantRegistrationResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  optional string userId = 3;
 }
 
 // Validate OTP
@@ -134,18 +139,6 @@ message ResendOTPResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool sent = 3;
-}
-
-// Register Merchant Organization
-message MerchantOrganizationRequest {
-  string companyName = 1;
-  bool registeredWithCAC = 2;
-  optional string CACRegistrationNumber = 3;
-  string userId = 7;
-}
-message MerchantOrganizationResponse {
-  int32 statusCode = 1;
-  repeated string error = 2;
 }
 
 // Register Shipper Organization
@@ -186,6 +179,7 @@ message LogisticOrganizationResponse {
 message LoginRequest {
   string email = 1;
   string password = 2;
+  optional string userType = 3;
 }
 message LoginResponse {
   int32 statusCode = 1;
@@ -479,3 +473,27 @@ message UpdateUserResponse {
   repeated string error = 2;
   User data = 3;
 }
+// Get Google Authorization Url
+message GoogleAppRequest {}
+message GoogleAppResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  string googleAuthorizationUrl = 3;
+}
+
+// Authenticate With Google
+message GoogleAuthRequest {
+  string authCode = 1;
+  
+}
+message GoogleAuthResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  string redirect = 3;
+  optional bool verified = 4;
+  optional string email = 5;
+  optional string token = 6;
+  
+}
+
+
