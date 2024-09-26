@@ -37,6 +37,7 @@ service CoreService {
   rpc DisableSubUser (GetUsersRequest) returns (DisableSubUserResponse) {}
   rpc UpdateFilterRequest (FiterUpdateRequest) returns (DisableSubUserResponse) {}
   rpc ContactUs (ContactUsRequest) returns (ContactUsResponse) {}
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
 }
 
 message GetAuthUserRequest {
@@ -464,4 +465,17 @@ message ContactUsResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   bool success = 3;
+}
+
+message UpdateUserRequest {
+  string userId = 1;
+  optional string name = 2;
+  optional string phoneCode = 4;
+  optional string phoneNumber = 5;
+}
+
+message UpdateUserResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  User data = 3;
 }
