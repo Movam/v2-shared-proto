@@ -499,7 +499,7 @@ message GoogleAuthResponse {
 
 message Rating {
   string type =1;
-  int32 rate = 2;
+  float rate = 2;
 }
 message AddDriverRatingRequest {
   string driverId = 1;
@@ -519,12 +519,12 @@ message GetDriverRatingSummaryRequest {
 
 message DriverSubSummaryRate{
   string type = 1;
-  int32 averageRate = 2;
+  float averageRate = 2;
 }
 
 message DriverRateSummary {
   int32 totalReview = 1;
-  int32 averageRating =2;
+  float averageRating =2;
   repeated DriverSubSummaryRate summary = 3;
 }
 
