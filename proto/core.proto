@@ -517,13 +517,19 @@ message GetDriverRatingSummaryRequest {
   string driverId = 1;
 }
 
+message DriverSubSummaryRate{
+  string type = 1;
+  int32 averageRate = 2;
+}
+
 message DriverRateSummary {
   int32 totalReview = 1;
   int32 averageRating =2;
+  DriverSubSummaryRate summary = 3;
 }
 
 message GetDriverRatingSummaryResponse {
   int32 statusCode = 1;
   repeated string error = 2;
-  DriverRateSummary summary=3;
+  DriverRateSummary data=3;
 }
