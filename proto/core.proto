@@ -525,7 +525,7 @@ message DriverSubSummaryRate{
 message DriverRateSummary {
   int32 totalReview = 1;
   int32 averageRating =2;
-  DriverSubSummaryRate summary = 3;
+  repeated DriverSubSummaryRate summary = 3;
 }
 
 message GetDriverRatingSummaryResponse {
