@@ -39,7 +39,8 @@ service CoreService {
   rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc GoogleApp (GoogleAppRequest) returns (GoogleAppResponse) {}
   rpc GoogleAuth (GoogleAuthRequest) returns (GoogleAuthResponse) {}
-  
+  rpc RateDriver (AddDriverRatingRequest) returns (AddDriverRatingResponse) {}
+  rpc GetDriverSummary (GetDriverRatingSummaryRequest) returns (GetDriverRatingSummaryResponse) {}
 }
 
 message GetAuthUserRequest {
@@ -496,4 +497,33 @@ message GoogleAuthResponse {
   
 }
 
+message Rating {
+  string type =1;
+  int32 rate = 2;
+}
+message AddDriverRatingRequest {
+  string driverId = 1;
+  repeated Rating rating = 2;
+  optional string description = 3;
+}
 
+message AddDriverRatingResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  bool success = 3;
+}
+
+message GetDriverRatingSummaryRequest {
+  string driverId = 1;
+}
+
+message DriverRateSummary {
+  int32 totalReview = 1;
+  int32 averageRating =2;
+}
+
+message GetDriverRatingSummaryResponse {
+  int32 statusCode = 1;
+  repeated string error = 2;
+  DriverRateSummary summary=3;
+}
