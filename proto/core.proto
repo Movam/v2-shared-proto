@@ -262,13 +262,12 @@ message GetOrgnisationResponse {
 message AddUserRequest {
   string name = 1;
   string email = 2;
-  string password = 3;
-  string phoneCode = 4;
-  string phoneNumber = 5;
-  string roleId = 6;
-  int32 orgId = 7;
-  string userType = 8;
-  string userId = 9;
+  string phoneCode = 3;
+  string phoneNumber = 4;
+  string roleId = 5;
+  int32 orgId = 6;
+  string userType = 7;
+  string userId = 8;
 }
 message AddUserResponse {
   int32 statusCode = 1;
