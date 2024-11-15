@@ -41,6 +41,7 @@ service CoreService {
   rpc GoogleAuth (GoogleAuthRequest) returns (GoogleAuthResponse) {}
   rpc RateDriver (AddDriverRatingRequest) returns (AddDriverRatingResponse) {}
   rpc GetDriverSummary (GetDriverRatingSummaryRequest) returns (GetDriverRatingSummaryResponse) {}
+  rpc UpdateOrganisation (UpdateOrganisationRequest) returns (GetOrganisationByAccountNoResponse) {}
 }
 
 message GetAuthUserRequest {
@@ -367,6 +368,7 @@ message Organization{
   string meta = 6;
   optional User user = 7;
   optional string uuid = 8;
+  optional string attributes = 9;
 }
 // Permissions
 message Permission{
@@ -532,4 +534,9 @@ message GetDriverRatingSummaryResponse {
   int32 statusCode = 1;
   repeated string error = 2;
   DriverRateSummary data=3;
+}
+
+message UpdateOrganisationRequest {
+  int32 orgId = 1;
+  string payload =2;
 }
