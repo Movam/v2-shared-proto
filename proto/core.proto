@@ -127,6 +127,7 @@ message ValidateOTPResponse {
   optional string phoneCode = 6;
   optional string phoneNumber = 7;
   optional string email = 8;
+  optional string userType = 9;
 }
 
 // Resend OTP
