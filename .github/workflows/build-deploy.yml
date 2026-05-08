@@ -1,0 +1,158 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [pilot]
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Image tag (default: SHA)'
+        required: false
+        type: string
+
+env:
+  REGISTRY: 84.46.249.50:5000
+  REGISTRY_USER: movam-ci
+  TRIVY_URL: http://84.46.249.50:8080
+  NODE_VERSION: '20'
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITLEAKS_LICENSE_KEY: ${{ secrets.GITLEAKS_LICENSE_KEY }}
+
+  build-scan-push:
+    runs-on: ubuntu-22.04
+    needs: gitleaks
+    outputs:
+      image_tag: ${{ steps.meta.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: pilot
+
+      - name: Setup Node.js
+        if: env.SKIP != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Check for Dockerfile
+        run: |
+          if [ ! -f "Dockerfile" ]; then
+            echo "No Dockerfile found in repository, skipping build job"
+            echo "SKIP=true" >> $GITHUB_ENV
+          else
+            echo "SKIP=false" >> $GITHUB_ENV
+          fi
+
+      - name: Set image name (lowercase repo name)
+        if: env.SKIP != 'true'
+        id: meta
+        run: |
+          REPO_LOWER=$(echo "${{ github.event.repository.name }}" | tr 'A-Z' 'a-z')
+          echo "repo_name=$REPO_LOWER" >> $GITHUB_OUTPUT
+          if [ -n "${{ github.event.inputs.image_tag }}" ]; then
+            echo "tag=${{ github.event.inputs.image_tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Configure insecure registry
+        if: env.SKIP != 'true'
+        run: |
+          sudo mkdir -p /etc/docker
+          echo '{"insecure-registries": ["84.46.249.50:5000"]}' | sudo tee /etc/docker/daemon.json
+          sudo systemctl daemon-reload
+          sudo systemctl restart docker
+          sleep 5
+          docker info 2>&1 | grep -A1 "Insecure Registries"
+
+      - name: Login to registry
+        if: env.SKIP != 'true'
+        run: |
+          echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login -u "${{ env.REGISTRY_USER }}" --password-stdin "${{ env.REGISTRY }}"
+
+      - name: Build and push
+        if: env.SKIP != 'true'
+        run: |
+          # Push only immutable SHA-based tag (no :latest)
+          docker build -t "${{ env.REGISTRY }}/${{ steps.meta.outputs.repo_name }}:${{ steps.meta.outputs.tag }}" .
+          docker push "${{ env.REGISTRY }}/${{ steps.meta.outputs.repo_name }}:${{ steps.meta.outputs.tag }}"
+          # Also tag with commit date for traceability
+          docker tag "${{ env.REGISTRY }}/${{ steps.meta.outputs.repo_name }}:${{ steps.meta.outputs.tag }}" "${{ env.REGISTRY }}/${{ steps.meta.outputs.repo_name }}:$(date +%Y%m%d)"
+          docker push "${{ env.REGISTRY }}/${{ steps.meta.outputs.repo_name }}:$(date +%Y%m%d)"
+
+      - name: Run Trivy vulnerability scan
+        if: env.SKIP != 'true'
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ steps.meta.outputs.repo_name }}:${{ steps.meta.outputs.tag }}
+          format: table
+          severity: CRITICAL,HIGH
+          exit-code: "1"
+          ignore-unfixed: true
+
+  deploy:
+    needs: build-scan-push
+    runs-on: ubuntu-22.04
+    if: github.ref == 'refs/heads/pilot'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: pilot
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'v1.32.0'
+
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+
+      - name: Create image pull secret
+        run: |
+          kubectl create secret docker-registry regcred \
+            --docker-server=${{ env.REGISTRY }} \
+            --docker-username=${{ env.REGISTRY_USER }} \
+            --docker-password='${{ secrets.REGISTRY_PASSWORD }}' \
+            --namespace=movam-dev \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Deploy manifests
+        run: |
+          if [ -d "k8s" ]; then
+            for f in k8s/*.yaml; do
+              echo "Applying $f"
+              kubectl apply -f "$f" --namespace=movam-dev
+            done
+          else
+            echo "No k8s/ directory found, skipping deploy"
+          fi
+
+      - name: Verify rollout
+        run: |
+          if [ -d "k8s" ]; then
+            for f in k8s/*-deployment.yaml; do
+              if [ -f "$f" ]; then
+                name=$(grep "name:" "$f" | head -1 | awk '{print $2}')
+                echo "Checking rollout status for $name"
+                kubectl rollout status deployment/$name --namespace=movam-dev --timeout=120s || true
+              fi
+            done
+          fi
